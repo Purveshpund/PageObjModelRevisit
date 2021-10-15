@@ -1,5 +1,7 @@
 package com.crm.qa.testcases;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +14,7 @@ import com.crm.qa.pages.LoginPage;
 public class LoginPageTest extends TestBase{
 	LoginPage loginPage;
 	HomePage homePage;
+	Logger logger;
 	
 	public LoginPageTest(){
 		super();
@@ -25,8 +28,14 @@ public class LoginPageTest extends TestBase{
 	
 	@Test(priority=1)
 	public void loginPageTitleTest(){
+
+		logger = Logger.getLogger(LoginPageTest.class);
+		BasicConfigurator.configure();
+		logger.info("This is my first log4j's statement");
+		logger.info("setup ");
+
 		String title = loginPage.validateLoginPageTitle();
-		Assert.assertEquals(title, "#1 Free CRM for Any Business: Online Customer Relationship Software");
+		Assert.assertEquals(title, "CRMPRO - CRM software for customer relationship management, sales, and support.");
 	}
 	
 	@Test(priority=2)
@@ -38,6 +47,7 @@ public class LoginPageTest extends TestBase{
 	@Test(priority=3)
 	public void loginTest(){
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		logger.info("Login test is being Conducted ");
 	}
 	
 	
@@ -46,9 +56,5 @@ public class LoginPageTest extends TestBase{
 	public void tearDown(){
 		driver.quit();
 	}
-	
-	
-	
-	
 
 }

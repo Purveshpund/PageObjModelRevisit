@@ -1,5 +1,6 @@
 package com.crm.qa.testcases;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,11 +12,14 @@ import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.util.TestUtil;
 
+import java.util.logging.Logger;
+
 public class HomePageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	TestUtil testUtil;
 	ContactsPage contactsPage;
+	Logger log = Logger.getLogger(String.valueOf(HomePageTest.class));
 
 	public HomePageTest() {
 		super();
@@ -28,6 +32,11 @@ public class HomePageTest extends TestBase {
 	
 	@BeforeMethod
 	public void setUp() {
+
+		String log4jConfPath = "C:\\Users\\ppund\\IdeaProjects\\PageObjectModel\\application.log";
+		PropertyConfigurator.configure(log4jConfPath);
+		log.info("setup ");
+
 		initialization();
 		testUtil = new TestUtil();
 		contactsPage = new ContactsPage();
