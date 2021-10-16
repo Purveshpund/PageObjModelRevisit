@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.crm.qa.base.TestBase;
 
 public class LoginPage extends TestBase{
-	
+
 	//Page Factory - OR:
 	@FindBy(name="username")
 	WebElement username;
@@ -48,5 +48,4 @@ public class LoginPage extends TestBase{
 		    	
 		return new HomePage();
 	}
-	
 }

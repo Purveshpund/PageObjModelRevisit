@@ -1,5 +1,7 @@
 package com.crm.qa.testcases;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -12,15 +14,12 @@ import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.util.TestUtil;
 
-import java.util.logging.Logger;
-
 public class HomePageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	TestUtil testUtil;
 	ContactsPage contactsPage;
-	Logger log = Logger.getLogger(String.valueOf(HomePageTest.class));
-
+	Logger logger;
 	public HomePageTest() {
 		super();
 	}
@@ -33,9 +32,10 @@ public class HomePageTest extends TestBase {
 	@BeforeMethod
 	public void setUp() {
 
-		String log4jConfPath = "C:\\Users\\ppund\\IdeaProjects\\PageObjectModel\\application.log";
-		PropertyConfigurator.configure(log4jConfPath);
-		log.info("setup ");
+		logger = Logger.getLogger(HomePageTest.class);
+		BasicConfigurator.configure();
+		logger.info("This is my first log4j's statement");
+		logger.info("setup ");
 
 		initialization();
 		testUtil = new TestUtil();
@@ -52,7 +52,7 @@ public class HomePageTest extends TestBase {
 	}
 	
 	@Test(priority=2)
-	public void verifyUserNameTest(){
+	public void verifyUserNameTest(){  // failedOne
 		testUtil.switchToFrame();
 		Assert.assertTrue(homePage.verifyCorrectUserName());
 	}

@@ -14,6 +14,7 @@ import com.crm.qa.pages.LoginPage;
 public class LoginPageTest extends TestBase{
 	LoginPage loginPage;
 	HomePage homePage;
+
 	Logger logger;
 	
 	public LoginPageTest(){
@@ -31,8 +32,10 @@ public class LoginPageTest extends TestBase{
 
 		logger = Logger.getLogger(LoginPageTest.class);
 		BasicConfigurator.configure();
+		System.out.println("Ritik");
 		logger.info("This is my first log4j's statement");
-		logger.info("setup ");
+		logger.info("hi i am ritikkkkkk ");
+
 
 		String title = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(title, "CRMPRO - CRM software for customer relationship management, sales, and support.");

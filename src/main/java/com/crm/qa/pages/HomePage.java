@@ -1,5 +1,9 @@
 package com.crm.qa.pages;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.UnableToSetCookieException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
@@ -9,10 +13,13 @@ import org.openqa.selenium.support.PageFactory;
 import com.crm.qa.base.TestBase;
 
 public class HomePage extends TestBase {
+	Logger logger;
+
 
 	@FindBy(xpath = "//td[contains(text(),'User: Naveen K')]")
 	@CacheLookup
 	WebElement userNameLabel;
+
 
 	@FindBy(xpath = "//a[contains(text(),'Contacts')]")
 	WebElement contactsLink;
@@ -38,7 +45,18 @@ public class HomePage extends TestBase {
 	
 	
 	public boolean verifyCorrectUserName(){
-		return userNameLabel.isDisplayed();
+
+		logger = Logger.getLogger(HomePage.class);
+		BasicConfigurator.configure();
+		logger.info("This is my first log4j's statement");
+		logger.info("setup ");
+		try {
+			return userNameLabel.isDisplayed();
+		}
+		catch (NoSuchElementException e){
+			logger.error("UnableToLocatelement", e);
+		}
+		return false;
 	}
 	
 	public ContactsPage clickOnContactsLink(){
