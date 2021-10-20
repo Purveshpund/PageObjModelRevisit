@@ -17,9 +17,9 @@ public class LoginPageTest extends TestBase{
 
 	Logger logger;
 	
-	public LoginPageTest(){
-		super();
-	}
+	//public LoginPageTest(){
+	//	super();
+	//}
 	
 	@BeforeMethod
 	public void setUp(){
